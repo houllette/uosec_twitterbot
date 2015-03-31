@@ -6,21 +6,58 @@
 # This script must be running all the time, it will be run on Google Scripts, this would
 # ideally work as a cron task.
 
-import tweepy, time
+import tweepy, time, datetime
 
-CONSUMER_KEY = 'XXXXX'
-CONSUMER_SECRET = 'XXXXX'
-ACCESS_KEY = 'XXXXX'
-ACCESS_SECRET = 'XXXXX'
-auth = tweepy.0AuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
+CONSUMER_KEY = 'XXXX' #requires info from twitter
+CONSUMER_SECRET = 'XXXX'
+ACCESS_KEY = 'XXXX'
+ACCESS_SECRET = 'XXXX'
+auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
 auth.set_access_token(ACCESS_KEY, ACCESS_SECRET)
 api = tweepy.API(auth)
 
-filename = open('tuesday.txt','r')
-f = filename.readlines()
-filename.close()
+now = datetime.datetime.now()
+day = now.strftime("%A")
 
-for line in f:
-	api.update_status(line)
-	print line
-	time.sleep(3600) # Sleeps for 1 hour
+f = ""
+phrase = ""
+
+if day == "Tauesday":
+	filename = open('tuesday.txt','r')
+	f = filename.readlines()
+	filename.close()
+	for line in f:
+		for x in range(0,40):
+			phrase += line[x]
+		phrase += " ("+time.strftime("%m/%d/%Y")+") "
+		length = len(line)
+		for x in range(41,length):
+			phrase += line[x]
+	api.update_status(status=phrase)
+	print phrase
+elif day == "Thursday":
+	filename = open('thursday.txt','r')
+	f = filename.readlines()
+	filename.close()
+	for line in f:
+		for x in range(0,36):
+			phrase += line[x]
+		phrase += " ("+time.strftime("%m/%d/%Y")+") "
+		length = len(line)
+		for x in range(37,length):
+			phrase += line[x]
+	api.update_status(status=phrase)
+	print phrase
+elif day == "Saturday":
+	filename = open('saturday.txt','r')
+	f = filename.readlines()
+	filename.close()
+	for line in f:
+		for x in range(0,29):
+			phrase += line[x]
+		phrase += " ("+time.strftime("%m/%d/%Y")+") "
+		length = len(line)
+		for x in range(30,length):
+			phrase += line[x]
+	api.update_status(status=phrase)
+	print phrase
