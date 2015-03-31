@@ -8,10 +8,10 @@
 
 import tweepy, time, datetime
 
-CONSUMER_KEY = 'XXXX' #requires info from twitter
-CONSUMER_SECRET = 'XXXX'
-ACCESS_KEY = 'XXXX'
-ACCESS_SECRET = 'XXXX'
+CONSUMER_KEY = '15VqSq52QpjVb0VXQ9aTUVFIo'
+CONSUMER_SECRET = 'EAt5Ikt1gJQ0O0UpjySOqymm8lxH0WknejrmCRGIyMgtd0Qnzv'
+ACCESS_KEY = '3118658258-YZAW8h9Lr1GOHx5RlDxSAGjRFWs85fUvu7yEHGy'
+ACCESS_SECRET = 'jEsxMDjczLQjj6F42fM2caB3I0WjcTPGQlQ0y9hwPPJez'
 auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
 auth.set_access_token(ACCESS_KEY, ACCESS_SECRET)
 api = tweepy.API(auth)
@@ -22,7 +22,7 @@ day = now.strftime("%A")
 f = ""
 phrase = ""
 
-if day == "Tauesday":
+if day == "Tuesday":
 	filename = open('tuesday.txt','r')
 	f = filename.readlines()
 	filename.close()
